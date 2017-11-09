@@ -38,24 +38,29 @@ def laneDetect(initial_img, debug=False):
 <img src="debug/grey scale.jpg " width="480" alt="Combined Image" />
 ###### apply gaussian blur
 Here uses kernel_size = 7
+
 <img src="debug/Gaussian blur.jpg " width="480" alt="Combined Image" />
 ###### apply canny edge detection
 The parameters are difined for Canny edge detection
+
 <img src="debug/Canny edge detection.jpg " width="480" alt="Combined Image" />    
 ###### apply roi   
 Spends sometime in finding the right vertices  
+
 <img src="debug/After applying ROI.jpg " width="480" alt="Combined Image" />
 
 ###### apply Hough transformation    
 Here do Hough transformation. The maxh_roi and height are additional arguments passed into the function to facilitate the line drawings
+
 <img src="debug/Lines from Hough transformation.jpg " width="480" alt="Combined Image" />
 ###### combine lines and original img
 use weighted_img function to combine line and original images
+
 <img src="debug/Resulting image.jpg " width="480" alt="Combined Image" />
 ###### return new img
 
 ##### Display a test image
-File test_images/solidWhiteCurve.jpg " width="480" alt="Combined Image" /> is displayed for test 
+File test_images/solidWhiteCurve.jpg is displayed for test 
 ##### fun: process all images in one folder
 def laneDetectBatch(src, dst):
 src: source folder
