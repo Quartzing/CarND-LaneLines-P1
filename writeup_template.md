@@ -23,25 +23,64 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+####Pipline:
+##### fun: open img
+def readImg(filename):
+##### fun: save img
+def saveImg(path, img):
+##### fun: debug img
+def debugImg(img, debug=False, helpword = ''):
+This is to facilitate debugging process.        
+##### fun: process single img
+def laneDetect(initial_img, debug=False): 
+###### change img to grey scale    
+    
+###### apply gaussian blur
+Here uses kernel_size = 7
+###### apply canny edge detection
+The parameters are difined for Canny edge detection    
+###### apply roi   
+Spends sometime in finding the right vertices  
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+###### apply Hough transformation    
+Here do Hough transformation. The maxh_roi and height are additional arguments passed into the function to facilitate the line drawings
+###### combine lines and original img
+use weighted_img function to combine line and original images
+###### return new img
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+##### Display a test image
+File test_images/solidWhiteCurve.jpg is displayed for test 
+##### fun: process all images in one folder
+def laneDetectBatch(src, dst):
+src: source folder
+dst: output folder
+###### get file list
 
-![alt text][image1]
+###### for each file
+
+###### process each image
+        
+###### save results with the same filename but in output folder
+        
+
+####draw_lines()
+This file is the one spending most of my time. I did following changes:
+
+1. Classify left and right
+First calculate the slops. Left with slop > 0; and right with slop < 0.
+2. Calculate mean line
+Calculate mean values for x1, y1, x2, y2 values for left and right lines
+3. Extropolation
+Extropolate the left and right mean lines to the bottom of the frame and top of the ROI. 
+
 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+One potential shortcomings is that the left or right lines could disappear. I deal with via raising a flag. If one of the line is disappeared, the draw function will ignore it. 
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+Kalman filter could be applied to fill the void of loss of detection of the lines.
