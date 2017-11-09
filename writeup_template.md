@@ -63,14 +63,20 @@ dst: output folder
 ###### save results with the same filename but in output folder
         
 
-####draw_lines()
+#### draw_lines()
 This file is the one spending most of my time. I did following changes:
 
 1. Classify left and right
+
 First calculate the slops. Left with slop > 0; and right with slop < 0.
+
 2. Calculate mean line
+
+
 Calculate mean values for x1, y1, x2, y2 values for left and right lines
+
 3. Extropolation
+
 Extropolate the left and right mean lines to the bottom of the frame and top of the ROI. 
 
 
